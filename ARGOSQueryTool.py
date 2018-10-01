@@ -37,13 +37,36 @@ for lineString in lineStrings:
     obsLat = lineData[5]                # Observation Latitude
     obsLon = lineData[6]                # Observation Longitude
 
-    # Add values to dictionary
-    dateDict[recordID] = obsDateTime   
-    locationDict[recordID] = (obsLat, obsLon) 
+    #filter out bad data
+
+    if obsLC in ("1","2","3"):
+         # Add values to dictionary
+        dateDict[recordID] = obsDate   
+        locationDict[recordID] = (obsLat, obsLon) 
 
 # Indicate script is complete
 print ("Finished")
 
-#compare size
 
-print (len(dateDict))
+# ask for a date
+
+    input("enter a date (M/D/YYYY:")
+
+    #
+
+    if not "/" in userDate:
+    print("wrong format")
+
+    # create empty key list
+
+    keyList = []
+
+    # loop through the date dictionary
+
+    for k,v in dateDict.items():
+        # see if the date matches th user date
+        if v == userDate:
+            keyList.append(k)
+
+    for key in keyList:
+        print(locationDict[key])
